@@ -6,11 +6,23 @@
 /*   By: pibosc <pibosc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:18:49 by pibosc            #+#    #+#             */
-/*   Updated: 2023/11/11 17:08:13 by pibosc           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:32:22 by pibosc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*tmp;
+
+	tmp = (unsigned char *) s;
+	while (n)
+	{
+		tmp[n - 1] = 0;
+		n--;
+	}
+}
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {

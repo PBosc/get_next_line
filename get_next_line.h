@@ -3,6 +3,7 @@
 
 # define BUFFER_SIZE 1024
 # include <stdlib.h>
+# include <limits.h>
 # include <unistd.h>
 
 char	*get_next_line(int fd);
