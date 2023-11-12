@@ -12,12 +12,12 @@
 
 #include "get_next_line.h"
 
-char		*get_first_line(char *str)
+char	*get_first_line(char *str)
 {
 	char	*line;
 	int		i;
-	
-	i = 0;	
+
+	i = 0;
 	if (!str || str[0] == 0)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
@@ -34,27 +34,21 @@ char		*get_first_line(char *str)
 		i++;
 	}
 	if (str[i])
-	{
 		line[i] = str[i];
-		i++;
-	}
-	line[i] = 0;
+	line[i + (str[i] == '\n')] = 0;
 	return (line);
 }
 
-char		*get_end(char *str)
+char	*get_end(char *str)
 {
 	int		i;
 	char	*end;
 	char	*tmp;
-	
+
 	i = 0;
 	tmp = ft_strchr(str, '\n');
 	if (!tmp)
-	{
-		free(str);
-		return (NULL);	
-	}
+		return (free(str), NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
 	end = malloc(ft_strlen(str) - i);
@@ -62,11 +56,10 @@ char		*get_end(char *str)
 		return (NULL);
 	tmp++;
 	i = 0;
-	while(*tmp)
+	while (*tmp)
 		end[i++] = *tmp++;
 	end[i] = 0;
-	free(str);
-	return (end);
+	return (free(str), end);
 }
 
 static char	*read_line(char *save, int fd)
@@ -74,7 +67,7 @@ static char	*read_line(char *save, int fd)
 	char	*buf;
 	char	*tmp;
 	int		ret;
-	
+
 	ret = 1;
 	buf = ft_calloc(BUFFER_SIZE + 1, 1);
 	if (!buf)
@@ -83,30 +76,26 @@ static char	*read_line(char *save, int fd)
 	{
 		ret = read(fd, buf, BUFFER_SIZE);
 		if (ret == -1)
-		{
-			free(buf);
-			return (NULL);
-		}
+			return (free(buf), NULL);
 		buf[ret] = 0;
 		if (!save)
-			save = ft_calloc(1,1);
+			save = ft_calloc(1, 1);
 		if (!save)
 			return (NULL);
 		tmp = save;
 		save = ft_strjoin(save, buf);
 		free(tmp);
 		if (ft_strchr(save, '\n'))
-			break;
+			break ;
 	}
-	free(buf);
-	return (save);
+	return (free(buf), save);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*save;
 	char		*line;
-	
+
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	save = read_line(save, fd);

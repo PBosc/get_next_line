@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pibosc <pibosc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/12 17:17:17 by pibosc            #+#    #+#             */
+/*   Updated: 2023/11/12 17:17:17 by pibosc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFER_SIZE 1024
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 # include <stdlib.h>
 # include <limits.h>
 # include <unistd.h>
